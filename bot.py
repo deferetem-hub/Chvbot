@@ -5,7 +5,7 @@ from telebot import types
 TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
-ADMIN_ID = 123456789  # <-- твой Telegram ID
+ADMIN_ID = 5497155434  # <-- твой Telegram ID
 
 # Товары
 PRODUCTS = {
