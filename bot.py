@@ -32,6 +32,11 @@ def start(message):
         reply_markup=keyboard
     )
 
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} нажал /start"
+    )
+
 
 # ---------- Старт ----------
 @bot.message_handler(func=lambda m: m.text == "Старт")
@@ -43,6 +48,11 @@ def choose_service(message):
         message.chat.id,
         "Отлично! Нажми кнопку ниже 👇",
         reply_markup=keyboard
+    )
+
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} нажал кнопку 'Старт'"
     )
 
 
@@ -57,6 +67,11 @@ def show_products(message):
         message.chat.id,
         "Выберите товар, чтобы узнать подробнее:",
         reply_markup=keyboard
+    )
+
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} нажал кнопку 'Выбрать услугу'"
     )
 
 
@@ -74,11 +89,21 @@ def product_info(message):
         reply_markup=keyboard
     )
 
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} выбрал '{message.text}'"
+    )
+
 
 # ---------- Назад ----------
 @bot.message_handler(func=lambda m: m.text == "Назад")
 def back_to_products(message):
     show_products(message)
+
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} нажал 'Назад'"
+    )
 
 
 # ---------- Оформить заявку ----------
@@ -94,10 +119,7 @@ def make_request(message):
 
     bot.send_message(
         ADMIN_ID,
-        f"🔥 Новая заявка\n"
-        f"Товар: {product}\n"
-        f"Пользователь: @{message.from_user.username}\n"
-        f"ID: {message.from_user.id}"
+        f"Пользователь @{message.from_user.username} нажал 'Оформить заявку' по товару '{product}'"
     )
 
 
