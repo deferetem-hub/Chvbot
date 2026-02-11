@@ -1,22 +1,33 @@
 import os
 import telebot
+from telebot import types  # <-- добавили
 
-TOKEN = os.getenv("BOT_TOKEN")  # безопасный способ хранить токен
+TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
-# ID администратора (твой Telegram ID)
-ADMIN_ID = 5497155434  # <-- вставь сюда свой ID
+ADMIN_ID = 123456789  # вставь свой ID
 
-# Обработчик команды /start
+
 @bot.message_handler(commands=['start'])
 def start(message):
-    # приветственное сообщение для пользователя
-    bot.send_message(message.chat.id, "Привет! Добро пожаловать в бот.")
+    # создаём клавиатуру
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.add(types.KeyboardButton("Начать"))
 
-    # уведомление администратору, что кто-то написал
-    bot.send_message(ADMIN_ID,
-                     f"Пользователь @{message.from_user.username} "
-                     f"нажал /start (ID: {message.from_user.id})")
+    # приветствие + кнопка
+    bot.send_message(
+        message.chat.id,
+        "Привет! Добро пожаловать в бот.\nНажми «Начать» 👇",
+        reply_markup=keyboard
+    )
+
+    # уведомление админу
+    bot.send_message(
+        ADMIN_ID,
+        f"Пользователь @{message.from_user.username} "
+        f"нажал /start (ID: {message.from_user.id})"
+    )
+
 
 print("Бот запущен...")
 bot.infinity_polling()
