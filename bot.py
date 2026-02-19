@@ -181,7 +181,7 @@ def make_request(message):
 
     bot.send_message(
         message.chat.id,
-        "Спасибо! ✍️\nМожете написать любой вопрос, который хотите задать.",
+        "Спасибо! Скоро вам напишет Денис, менеджер.✍️\nМожете написать любой вопрос, который хотите задать.",
         reply_markup=types.ReplyKeyboardRemove()
     )
 
